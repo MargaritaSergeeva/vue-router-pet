@@ -12,12 +12,15 @@
     </div>
 
     <button class="btn primary" type="submit">Войти</button>
-    <button class="btn warning">Забыл пароль?</button>
+    <router-link to="/forget" v-slot="{ navigate }">
+      <button class="btn warning" @click="navigate">Забыл пароль?</button>
+    </router-link>
   </form>
 </template>
 
 <script>
 export default {
+  inject: ["login"],
   data() {
     return {
       email: "",
@@ -32,7 +35,7 @@ export default {
   methods: {
     submit() {
       if (this.isValid) {
-        // login
+        this.login();
       }
     },
   },

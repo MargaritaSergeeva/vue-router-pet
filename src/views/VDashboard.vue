@@ -7,12 +7,17 @@
       письма :)
     </p>
 
-    <router-link to="mail">To Mail</router-link>
+    <router-link :to="{ name: 'email' }">To Mail</router-link>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  beforeRouteLeave(to, from, next) {
+    const answer = confirm("Вы уверены, что хотите перейти?");
+    answer ? next() : next(false);
+  },
+};
 </script>
 
 <style scoped></style>
